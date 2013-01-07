@@ -4,11 +4,11 @@ using System.Windows.Data;
 
 namespace JFKCommonLibrary.WPF.Converters
 {
-    public class ListIntToVisibilityConverter : IValueConverter
+    public class ListIntToVisibilityConverter : ValueConverter
     {
         public string VisibleValue { get; set; }
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var wrt = VisibleValue.Split(',');
 
@@ -20,7 +20,7 @@ namespace JFKCommonLibrary.WPF.Converters
             return Visibility.Hidden;            
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }

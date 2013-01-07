@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\compiled\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NO_UNSAFE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -103,8 +103,9 @@
     <Compile Include="WPF\Converters\NullToCollapsedConverter.cs" />
     <Compile Include="WPF\Converters\NullToFalseConverter.cs" />
     <Compile Include="WPF\Converters\ObjectToStringConverter.cs" />
-    <Compile Include="WPF\Converters\ResolveElementName.cs" />
+    <Compile Include="WPF\ResolveElementName.cs" />
     <Compile Include="WPF\Converters\TreeViewLineConverter.cs" />
+    <Compile Include="WPF\Converters\ValueConverter.cs" />
     <Compile Include="WPF\GhostCursor.cs" />
     <Compile Include="WPF\UIHelpers.cs" />
     <Compile Include="WPF\WinFormsImage.cs" />

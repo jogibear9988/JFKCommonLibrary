@@ -4,7 +4,7 @@ using System.Windows.Data;
 using System.Windows.Interactivity;
 using System.Windows.Media;
 
-namespace JFKCommonLibrary.WPF.Converters
+namespace JFKCommonLibrary.WPF
 {
     public class ResolveElementName : TargetedTriggerAction<FrameworkElement>
     {
@@ -40,14 +40,14 @@ namespace JFKCommonLibrary.WPF.Converters
         protected override void OnAttached()
         {
             base.OnAttached();
-            Target.Loaded += Target_Loaded;
+            this.Target.Loaded += this.Target_Loaded;
         }
 
 
         protected override void OnDetaching()
         {
             base.OnDetaching();
-            Target.Loaded -= Target_Loaded;
+            this.Target.Loaded -= this.Target_Loaded;
         }
 
 
@@ -55,24 +55,24 @@ namespace JFKCommonLibrary.WPF.Converters
         {
 
 
-            if (Target != null)
+            if (this.Target != null)
             {
-                var fields = Target.GetType().GetFields(
+                var fields = this.Target.GetType().GetFields(
                     System.Reflection.BindingFlags.Public |
                     System.Reflection.BindingFlags.FlattenHierarchy |
                     System.Reflection.BindingFlags.Static);
                 foreach (var field in fields)
                 {
                     if (field.FieldType == typeof (DependencyProperty) &&
-                        (field.Name == PropertyName ||
-                         field.Name == string.Concat(PropertyName, "Property")))
+                        (field.Name == this.PropertyName ||
+                         field.Name == string.Concat(this.PropertyName, "Property")))
                     {
-                        DependencyProperty dp = field.GetValue(Target) as DependencyProperty;
-                        var binding = Target.GetBindingExpression(dp);
+                        DependencyProperty dp = field.GetValue(this.Target) as DependencyProperty;
+                        var binding = this.Target.GetBindingExpression(dp);
                         string elementName = binding.ParentBinding.ElementName;
                         if (!string.IsNullOrEmpty(elementName))
                         {
-                            DependencyObject boundToElement = GetElementBasedOnName(Target, elementName);
+                            DependencyObject boundToElement = GetElementBasedOnName(this.Target, elementName);
                             if (boundToElement != null)
                             {
                                 Binding newBinding = new Binding();
@@ -91,9 +91,9 @@ namespace JFKCommonLibrary.WPF.Converters
                                 newBinding.UpdateSourceTrigger = oldBinding.UpdateSourceTrigger;
                                 newBinding.ValidatesOnDataErrors = oldBinding.ValidatesOnDataErrors;
                                 newBinding.ValidatesOnExceptions = oldBinding.ValidatesOnExceptions;
-                                if (Target is ComboBox)
+                                if (this.Target is ComboBox)
                                 {
-                                    ComboBox combo = Target as ComboBox;
+                                    ComboBox combo = this.Target as ComboBox;
                                     combo.SetBinding(dp, newBinding);
                                     /*combo.SetBinding(ComboBox.SelectedValueProperty,
                                                      combo.GetBindingExpression(ComboBox.SelectedValueProperty).
@@ -101,7 +101,7 @@ namespace JFKCommonLibrary.WPF.Converters
                                 }
                                 else
                                 {
-                                    Target.SetBinding(dp, newBinding);
+                                    this.Target.SetBinding(dp, newBinding);
                                 }
 
                             }
@@ -113,8 +113,8 @@ namespace JFKCommonLibrary.WPF.Converters
 
         public string PropertyName
         {
-            get { return (string) GetValue(PropertyNameProperty); }
-            set { SetValue(PropertyNameProperty, value); }
+            get { return (string) this.GetValue(PropertyNameProperty); }
+            set { this.SetValue(PropertyNameProperty, value); }
         }
 
 

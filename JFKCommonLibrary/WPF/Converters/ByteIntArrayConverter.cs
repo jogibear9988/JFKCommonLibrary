@@ -5,9 +5,9 @@ using System.Windows.Data;
 
 namespace JFKCommonLibrary.WPF.Converters
 {
-    public class ByteIntArrayConverter : IValueConverter
+    public class ByteIntArrayConverter : ValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is byte[])
             {
@@ -54,7 +54,7 @@ namespace JFKCommonLibrary.WPF.Converters
                 return value;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new Exception("The method or operation is not implemented.");
         }

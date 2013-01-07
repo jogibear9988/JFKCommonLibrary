@@ -5,13 +5,13 @@ using System.Windows.Media;
 
 namespace JFKCommonLibrary.WPF.Converters
 {
-    public class NullableBoolToValueConverter<T> : IValueConverter
+    public class NullableBoolToValueConverter<T> : ValueConverter
     {
         public T NullValue { get; set; }
         public T FalseValue { get; set; }
         public T TrueValue { get; set; }
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)
                 return NullValue;
@@ -19,7 +19,7 @@ namespace JFKCommonLibrary.WPF.Converters
                 return ((bool?)value).Value ? TrueValue : FalseValue;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value != null)
             {

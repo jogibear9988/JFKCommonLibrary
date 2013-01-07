@@ -4,18 +4,18 @@ using System.Windows.Data;
 
 namespace JFKCommonLibrary.WPF.Converters
 {
-    public class IntToHiddenConverter : IValueConverter
+    public class IntToHiddenConverter : ValueConverter
     {
         public int HiddenValue { get; set; }
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (System.Convert.ToInt32(value) == HiddenValue)
                 return Visibility.Hidden;
             return Visibility.Visible;            
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }

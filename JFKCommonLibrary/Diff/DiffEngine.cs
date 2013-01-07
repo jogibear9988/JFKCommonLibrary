@@ -169,7 +169,7 @@ namespace JFKCommonLibrary.Diff
                 if (destEnd >= upperDestStart)
                 {
                     //we still have more upper dest data
-                    if (sourceEnd > upperSourceStart)
+                    if (sourceEnd > upperSourceStart - 1)
                     {
                         //set still have more upper source data
                         // Recursive call to process upper indexes

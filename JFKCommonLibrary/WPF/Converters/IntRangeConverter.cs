@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace JFKCommonLibrary.WPF.Converters
 {
-    public class IntRangeConverter<T> : IValueConverter
+    public class IntRangeConverter<T> : ValueConverter
     {
         public class IntRangeValue
         {
@@ -23,7 +23,7 @@ namespace JFKCommonLibrary.WPF.Converters
             set { _intRangeValues = value; }
         }
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)
                 return null;
@@ -70,7 +70,7 @@ namespace JFKCommonLibrary.WPF.Converters
             return null;          
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
@@ -79,6 +79,7 @@ namespace JFKCommonLibrary.WPF.Converters
     public class IntRangeToStringConverter : IntRangeConverter<string> { } ;
     public class IntRangeToBrushConverter : IntRangeConverter<Brush> { } ;
     public class IntRangeToThicknessConverter : IntRangeConverter<Thickness> { } ;
+    public class IntRangeToVisibilityConverter : IntRangeConverter<Visibility> { } ;
     public class IntRangeToPointConverter : IntRangeConverter<Point> { } ;
     public class IntRangeToIntConverter : IntRangeConverter<int> { } ;
     public class IntRangeToDoubleConverter : IntRangeConverter<double> { } ;

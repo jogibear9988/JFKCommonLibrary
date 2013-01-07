@@ -3,9 +3,9 @@ using System.Windows.Data;
 
 namespace JFKCommonLibrary.WPF.Converters
 {
-    public class NullToFalseConverter : IValueConverter
+    public class NullToFalseConverter : ValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)
                 return false;
@@ -13,7 +13,7 @@ namespace JFKCommonLibrary.WPF.Converters
                 return true;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new Exception("The method or operation is not implemented.");
         }
