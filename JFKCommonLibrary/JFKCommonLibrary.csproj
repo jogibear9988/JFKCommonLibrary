@@ -60,6 +60,7 @@
     <Compile Include="Diff\TextLine.cs" />
     <Compile Include="Events\EventHelper.cs" />
     <Compile Include="ExtensionMethods\ByteArrayExtensions.cs" />
+    <Compile Include="ExtensionMethods\IEnumerableExtensions.cs" />
     <Compile Include="ExtensionMethods\ListBoxExtension.cs" />
     <Compile Include="ExtensionMethods\PointExtensions.cs" />
     <Compile Include="ExtensionMethods\StringExtension.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="WPF\Behaviors\ICloneableBehavior.cs" />
     <Compile Include="WPF\Behaviors\InputBindingsManager.cs" />
     <Compile Include="WPF\Behaviors\StylizedBehaviors.cs" />
+    <Compile Include="WPF\Behaviors\TabContent.cs" />
     <Compile Include="WPF\BitmapConversion.cs" />
     <Compile Include="WPF\Converters\BoolToValueConverter.cs" />
     <Compile Include="WPF\Converters\ByteIntArrayConverter.cs" />
