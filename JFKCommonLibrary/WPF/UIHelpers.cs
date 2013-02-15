@@ -1,5 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Markup;
 using System.Windows.Media;
@@ -10,6 +14,52 @@ namespace JFKCommonLibrary.WPF
 {
     public static class UIHelpers
     {
+        /// <summary>
+        /// Method to call to get the Visual Tree of a Visual element.
+        /// </summary>
+        /// <param name="element">The Visual element that yo want to browse to have its Visual Tree.</param>
+        /// <returns>A StringBuilder object that contains the Visual Tree of the specified Visual element.</returns>
+        public static string GetVisualTreeInfo(Visual element)
+        {
+            if (element == null)
+            {
+                throw new ArgumentNullException(String.Format("Element {0} is null !", element.ToString()));
+            }
+
+            var sb = new StringBuilder();
+
+            GetControlsList(element, 0, sb);
+
+            return sb.ToString();
+        }
+
+        private static void GetControlsList(Visual control, int level, StringBuilder sb)
+        {
+            const int indent = 4;
+            int ChildNumber = VisualTreeHelper.GetChildrenCount(control);
+
+            for (int i = 0; i <= ChildNumber - 1; i++)
+            {
+                Visual v = VisualTreeHelper.GetChild(control, i) as Visual;
+
+                if (v != null)
+                {
+                    sb.Append(new string(' ', level * indent));
+                    sb.Append(v.GetType());
+                    sb.Append(Environment.NewLine);
+
+                    if (VisualTreeHelper.GetChildrenCount(v) > 0)
+                    {
+                        GetControlsList(v, level + 1, sb);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentNullException(String.Format("Element {0} is null !", v.ToString()));
+                }
+            }
+        }
+
         /// <summary>
         /// Render a UIElement such that the visual tree is generated, 
         /// without actually displaying the UIElement
@@ -142,6 +192,94 @@ namespace JFKCommonLibrary.WPF
             if (element == null) return null;
             else if (element is T) return (T)element;
             else return TryFindParent<T>(element);
+        }
+
+
+        public enum RelativeVerticalMousePosition
+        {
+            Middle,
+            Top,
+            Bottom
+        }
+
+        public static RelativeVerticalMousePosition GetRelativeVerticalMousePosition(FrameworkElement elm, Point pt)
+        {
+            if (pt.Y > 0.0 && pt.Y < 25)
+            {
+                return RelativeVerticalMousePosition.Top;
+            }
+            else if (pt.Y > elm.ActualHeight - 25 && pt.Y < elm.ActualHeight)
+            {
+                return RelativeVerticalMousePosition.Top;
+            }
+            return RelativeVerticalMousePosition.Middle;
+        }
+
+        public static object GetItemFromPointInItemsControl(ItemsControl parent, Point p)
+        {
+            UIElement element = parent.InputHitTest(p) as UIElement;
+            while (element != null)
+            {
+                if (element == parent)
+                    return null;
+
+                object data = parent.ItemContainerGenerator.ItemFromContainer(element);
+                if (data != DependencyProperty.UnsetValue)
+                {
+                    return data;
+                }
+                else
+                {
+                    element = VisualTreeHelper.GetParent(element) as UIElement;
+                }
+            }
+            return null;
+        }
+
+        public static UIElement GetItemContainerFromPointInItemsControl(ItemsControl parent, Point p)
+        {
+            UIElement element = parent.InputHitTest(p) as UIElement;
+            while (element != null)
+            {
+                if (element == parent)
+                    return null;
+
+                object data = parent.ItemContainerGenerator.ItemFromContainer(element);
+                if (data != DependencyProperty.UnsetValue)
+                {
+                    return element;
+                }
+                else
+                {
+                    element = VisualTreeHelper.GetParent(element) as UIElement;
+                }
+            }
+            return null;
+        }
+
+        public static T GetVisualDescendent<T>(DependencyObject d) where T : DependencyObject
+        {
+            return GetVisualDescendents<T>(d).FirstOrDefault();
+        }
+
+        public static IEnumerable<T> GetVisualDescendents<T>(DependencyObject d) where T : DependencyObject
+        {
+            for (int n = 0; n < VisualTreeHelper.GetChildrenCount(d); n++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(d, n);
+
+                if (child is T)
+                {
+                    yield return (T)child;
+                }
+
+                foreach (T match in GetVisualDescendents<T>(child))
+                {
+                    yield return match;
+                }
+            }
+
+            yield break;
         }
     }
 }

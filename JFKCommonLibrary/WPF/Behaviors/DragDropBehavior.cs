@@ -31,7 +31,7 @@ using System.Windows.Media;
 
 namespace JFKCommonLibrary.WPF.Behaviors
 {
-    public class DragDropBehavior : Behavior<FrameworkElement>
+    public class DragDropBehavior : Behavior<FrameworkElement>, ICloneableBehavior
     {
         #region IsHost Property
 
@@ -197,5 +197,9 @@ namespace JFKCommonLibrary.WPF.Behaviors
             return parent as FrameworkElement;
         }
 
+        public object CloneBehavior()
+        {
+            return new DragDropBehavior();
+        }
     }
 }

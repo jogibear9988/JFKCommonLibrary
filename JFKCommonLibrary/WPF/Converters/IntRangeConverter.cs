@@ -8,19 +8,20 @@ using System.Windows.Media;
 
 namespace JFKCommonLibrary.WPF.Converters
 {
+
+    public class IntRangeValue<T>
+    {
+        public string IntRange { get; set; }
+        public T Value { get; set; }
+    }
+
     public class IntRangeConverter<T> : ValueConverter
     {
-        public class IntRangeValue
+        private List<IntRangeValue<T>> _intRangeValues = new List<IntRangeValue<T>>();
+        public List<IntRangeValue<T>> IntRangeValues
         {
-            public string IntRange { get; set; }
-            public T Value { get; set; }
-        }
-
-        private List<IntRangeValue> _intRangeValues = new List<IntRangeValue>();
-        public List<IntRangeValue> IntRangeValues
-        {
-            get { return _intRangeValues; }
-            set { _intRangeValues = value; }
+            get { return this._intRangeValues; }
+            set { this._intRangeValues = value; }
         }
 
         public override object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -30,7 +31,7 @@ namespace JFKCommonLibrary.WPF.Converters
 
             int intvalue = System.Convert.ToInt32(value);
 
-            foreach (IntRangeValue intBrushValue in IntRangeValues)
+            foreach (IntRangeValue<T> intBrushValue in this.IntRangeValues)
             {
                 if (intBrushValue.IntRange.Contains('-'))
                 {
@@ -39,7 +40,7 @@ namespace JFKCommonLibrary.WPF.Converters
                     if (intvalue >= start && intvalue <= stop)
                         return intBrushValue.Value;
                 }
-                else if (intBrushValue.IntRange.Length>=2 && intBrushValue.IntRange[0] == '<' && intBrushValue.IntRange[1] == '=')
+                else if (intBrushValue.IntRange.Length >= 2 && intBrushValue.IntRange[0] == '<' && intBrushValue.IntRange[1] == '=')
                 {
                     int val = System.Convert.ToInt32(intBrushValue.IntRange.Substring(1));
                     if (intvalue <= val)
@@ -67,7 +68,7 @@ namespace JFKCommonLibrary.WPF.Converters
                     return intBrushValue.Value;
             }
 
-            return null;          
+            return null;
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -77,10 +78,23 @@ namespace JFKCommonLibrary.WPF.Converters
     }
 
     public class IntRangeToStringConverter : IntRangeConverter<string> { } ;
+    public class IntRangeValueString : IntRangeValue<string> { } ;
+
     public class IntRangeToBrushConverter : IntRangeConverter<Brush> { } ;
+    public class IntRangeValueBrush : IntRangeValue<Brush> { } ;
+
     public class IntRangeToThicknessConverter : IntRangeConverter<Thickness> { } ;
+    public class IntRangeValueThickness : IntRangeValue<Thickness> { } ;
+
     public class IntRangeToVisibilityConverter : IntRangeConverter<Visibility> { } ;
+    public class IntRangeValueVisibility : IntRangeValue<Visibility> { } ;
+
     public class IntRangeToPointConverter : IntRangeConverter<Point> { } ;
+    public class IntRangeValuePoint : IntRangeValue<Point> { } ;
+
     public class IntRangeToIntConverter : IntRangeConverter<int> { } ;
+    public class IntRangeValueInt : IntRangeValue<int> { } ;
+
     public class IntRangeToDoubleConverter : IntRangeConverter<double> { } ;
+    public class IntRangeValueDouble : IntRangeValue<double> { } ;
 }

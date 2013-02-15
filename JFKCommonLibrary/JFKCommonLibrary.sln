@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JFKCommonLibrary", "JFKCommonLibrary.csproj", "{B158CAB4-C341-4B87-8978-FE80D73F12C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "..\Example\Example.csproj", "{F70183D2-0065-4E0D-9EF9-A7793D77B2E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{B158CAB4-C341-4B87-8978-FE80D73F12C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B158CAB4-C341-4B87-8978-FE80D73F12C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B158CAB4-C341-4B87-8978-FE80D73F12C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F70183D2-0065-4E0D-9EF9-A7793D77B2E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F70183D2-0065-4E0D-9EF9-A7793D77B2E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F70183D2-0065-4E0D-9EF9-A7793D77B2E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F70183D2-0065-4E0D-9EF9-A7793D77B2E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
