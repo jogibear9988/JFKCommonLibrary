@@ -109,6 +109,7 @@
     <Compile Include="WPF\Converters\NullToFalseConverter.cs" />
     <Compile Include="WPF\Converters\ObjectToStringConverter.cs" />
     <Compile Include="WPF\Panels\AnimatedWrapPanel.cs" />
+    <Compile Include="WPF\Panels\CirclePanel.cs" />
     <Compile Include="WPF\Panels\FanPanel.cs" />
     <Compile Include="WPF\Panels\FishEyePanel.cs" />
     <Compile Include="WPF\Panels\LoopPanel.cs" />
