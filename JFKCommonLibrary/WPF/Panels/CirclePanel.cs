@@ -10,6 +10,7 @@ namespace JFKCommonLibrary.WPF.Panels
 {
     /// <summary>
     /// Circle Panel, arranges child element within a circle.
+    /// from: http://www.codebullets.com/custom-circle-panel-wpf-part-1-216
     /// </summary>
     public class CirclePanel : Panel
     {
