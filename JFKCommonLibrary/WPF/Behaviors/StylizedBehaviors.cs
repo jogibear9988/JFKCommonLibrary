@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.Xaml.Behaviors;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Interactivity;
 
 namespace JFKCommonLibrary.WPF.Behaviors
 {

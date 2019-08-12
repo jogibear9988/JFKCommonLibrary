@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JFKCommonLibrary</RootNamespace>
     <AssemblyName>JFKCommonLibrary</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <DefineConstants>TRACE;DEBUG;NO_UNSAFE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -40,7 +43,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -131,6 +133,11 @@
     <Resource Include="WPF\Behaviors\CopyPaste\Images\DeleteHS.png" />
     <Resource Include="WPF\Behaviors\CopyPaste\Images\Edit_UndoHS.png" />
     <Resource Include="WPF\Behaviors\CopyPaste\Images\PasteHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,10 +23,10 @@
  * OTHER DEALINGS IN THE SOFTWARE.
 **************************************************************/
 
+using Microsoft.Xaml.Behaviors;
 using System;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Interactivity;
 using System.Windows.Media;
 
 namespace JFKCommonLibrary.WPF.Behaviors
